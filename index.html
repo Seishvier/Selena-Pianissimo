@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unofficial fan archive for Selena (Pianissimo) from Punishing: Gray Raven.">
+  <title>SELENA // PIANISSIMO — PGR Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ░░░ BOOT OVERLAY ░░░ -->
+  <div class="boot-overlay" id="boot-overlay">
+    <div class="boot-inner">
+      <div class="boot-glyph">◈</div>
+      <p class="boot-line">INITIALIZING ARCHIVE...</p>
+      <div class="boot-bar"><span id="boot-fill"></span></div>
+      <p class="boot-log" id="boot-log">> loading kernel...</p>
+    </div>
+  </div>
+
+  <!-- ░░░ CURSOR GLOW ░░░ -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
+  <!-- ░░░ SCROLL PROGRESS ░░░ -->
+  <div class="scroll-progress"><span id="scroll-fill"></span></div>
+
+  <!-- ░░░ BACKGROUND FX ░░░ -->
+  <canvas id="particle-canvas"></canvas>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ░░░ HUD CORNERS ░░░ -->
+  <div class="hud-frame" aria-hidden="true">
+    <span class="hud-corner tl"></span><span class="hud-corner tr"></span>
+    <span class="hud-corner bl"></span><span class="hud-corner br"></span>
+  </div>
+
+  <!-- ░░░ NAVIGATION ░░░ -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-brand">
+      <span class="brand-icon">◈</span>
+      <span class="brand-text">PGR<em>//</em>ARCHIVE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link active" data-section="hero">00 // HOME</a></li>
+      <li><a href="#biodata" class="nav-link" data-section="biodata">01 // BIODATA</a></li>
+      <li><a href="#story" class="nav-link" data-section="story">02 // STORY</a></li>
+      <li><a href="#frames" class="nav-link" data-section="frames">03 // FRAMES</a></li>
+      <li><a href="#voicelines" class="nav-link" data-section="voicelines">04 // VOICE</a></li>
+      <li><a href="#relationships" class="nav-link" data-section="relationships">05 // BONDS</a></li>
+      <li><a href="#theme" class="nav-link" data-section="theme">06 // THEME</a></li>
+      <li><a href="#gallery" class="nav-link" data-section="gallery">07 // GALLERY</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="ctrl-btn" id="audio-toggle" title="Toggle sound">
+        <span class="ctrl-icon" id="audio-icon">♪</span>
+      </button>
+      <button class="ctrl-btn" id="theme-toggle" title="Cycle color theme">
+        <span class="ctrl-icon">◐</span>
+      </button>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span class="status-text">SIGNAL OK</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <header id="hero" class="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="tag-line"></span>
+        <span class="tag-text">CHARACTER FILE // S-RANK // PIANISSIMO</span>
+      </div>
+      <h1 class="hero-title glitch" data-text="SELENA">SELENA</h1>
+      <h2 class="hero-subtitle">
+        <span id="typing-text"></span><span class="cursor-blink">▌</span>
+      </h2>
+      <div class="hero-divider">
+        <span class="divider-line"></span>
+        <span class="divider-diamond">◆</span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="hero-desc">
+        Opera singer. Artist. Transcendant. The voice that listens to the Punishing Virus —
+        and the melody that refuses to fade. Pianissimo: <em>the softest, yet the most unbroken.</em>
+      </p>
+      <div class="hero-actions">
+        <a href="#biodata" class="btn btn-primary" data-sfx="click">
+          <span class="btn-icon">▸</span> ACCESS DATA
+        </a>
+        <a href="#story" class="btn btn-ghost" data-sfx="hover">
+          <span class="btn-icon">◇</span> READ STORY
+        </a>
+        <button class="btn btn-ghost" id="open-terminal">
+          <span class="btn-icon">_</span> OPEN TERMINAL
+        </button>
+      </div>
+      <div class="hero-quickstats">
+        <div class="qs-item"><span class="qs-num" data-count="90">0</span><span class="qs-label">ATK RATING</span></div>
+        <div class="qs-item"><span class="qs-num" data-count="5">0</span><span class="qs-label">PARTS SYNCED</span></div>
+        <div class="qs-item"><span class="qs-num" data-count="3">0</span><span class="qs-label">FRAMES</span></div>
+        <div class="qs-item"><span class="qs-num" data-count="27">0</span><span class="qs-label">SEP // BIRTH</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-frame">
+        <div class="frame-inner">
+          <!-- 🔁 REPLACE with: <img src="selena-hero.jpg" alt="Selena"> -->
+          <div class="hero-image-placeholder">
+            <span class="placeholder-glyph">♪</span>
+            <span class="placeholder-text">SELENA<br><small>PIANISSIMO</small></span>
+            <span class="ph-tag">// ART PLACEHOLDER</span>
+          </div>
+        </div>
+        <div class="frame-corner tl"></div><div class="frame-corner tr"></div>
+        <div class="frame-corner bl"></div><div class="frame-corner br"></div>
+        <div class="frame-scan"></div>
+      </div>
+      <div class="hero-visual-info">
+        <span class="info-chip">FRAME: PIANISSIMO</span>
+        <span class="info-chip">CLASS: ATTACKER</span>
+        <span class="info-chip">ELEMENT: PHYSICAL / GLACIA</span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>SCROLL TO DECRYPT</span><span class="scroll-arrow">▼</span>
+    </div>
+  </header>
+
+  <!-- ═══════════════ BIODATA ═══════════════ -->
+  <section id="biodata" class="section biodata-section reveal">
+    <div class="section-header">
+      <span class="section-index">01</span>
+      <h2 class="section-title glitch" data-text="BIODATA">BIODATA</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="biodata-grid">
+      <div class="data-card reveal-child">
+        <div class="card-header"><span class="card-icon">◈</span><span class="card-label">BASIC INFO</span></div>
+        <div class="card-body">
+          <div class="data-row"><span class="data-key">FULL NAME</span><span class="data-val">Selena</span></div>
+          <div class="data-row"><span class="data-key">ALIAS</span><span class="data-val">Pianissimo / Iris / The Siren</span></div>
+          <div class="data-row"><span class="data-key">GENDER</span><span class="data-val">Female</span></div>
+          <div class="data-row"><span class="data-key">BIRTHDAY</span><span class="data-val">September 27</span></div>
+          <div class="data-row"><span class="data-key">MENTAL AGE</span><span class="data-val">20 years</span></div>
+          <div class="data-row"><span class="data-key">ORIGIN</span><span class="data-val">Babylonia</span></div>
+        </div>
+      </div>
+
+      <div class="data-card reveal-child">
+        <div class="card-header"><span class="card-icon">◇</span><span class="card-label">PHYSICAL DATA</span></div>
+        <div class="card-body">
+          <div class="data-row"><span class="data-key">HEIGHT</span><span class="data-val">163 cm</span></div>
+          <div class="data-row"><span class="data-key">WEIGHT</span><span class="data-val">41 kg</span></div>
+          <div class="data-row"><span class="data-key">BLOOD TYPE</span><span class="data-val">O</span></div>
+          <div class="data-row"><span class="data-key">HAIR</span><span class="data-val">Black / Cyan Streaks</span></div>
+          <div class="data-row"><span class="data-key">EYES</span><span class="data-val">Violet</span></div>
+          <div class="data-row"><span class="data-key">VOICE</span><span class="data-val">Soft, resonant mezzo</span></div>
+        </div>
+      </div>
+
+      <div class="data-card reveal-child">
+        <div class="card-header"><span class="card-icon">◆</span><span class="card-label">COMBAT DATA</span></div>
+        <div class="card-body">
+          <div class="data-row"><span class="data-key">FRAME</span><span class="data-val">Pianissimo (S-Rank)</span></div>
+          <div class="data-row"><span class="data-key">CLASS</span><span class="data-val">Attacker</span></div>
+          <div class="data-row"><span class="data-key">ELEMENT</span><span class="data-val">Physical / Glacia</span></div>
+          <div class="data-row"><span class="data-key">WEAPON</span><span class="data-val">Bowstring Rapier</span></div>
+          <div class="data-row"><span class="data-key">CUB</span><span class="data-val">Snow Waltz</span></div>
+          <div class="data-row"><span class="data-key">SIGNATURE</span><span class="data-val">Symphonia No. 5</span></div>
+        </div>
+      </div>
+
+      <div class="data-card reveal-child">
+        <div class="card-header"><span class="card-icon">✦</span><span class="card-label">AFFILIATION</span></div>
+        <div class="card-body">
+          <div class="data-row"><span class="data-key">FACTION</span><span class="data-val">WGAA (Art Association)</span></div>
+          <div class="data-row"><span class="data-key">FORMER</span><span class="data-val">Archaeological Team</span></div>
+          <div class="data-row"><span class="data-key">VA (JP)</span><span class="data-val">Satomi Satō</span></div>
+          <div class="data-row"><span class="data-key">VA (CN)</span><span class="data-val">Liu Zhixiao</span></div>
+          <div class="data-row"><span class="data-key">FAVORITE GIFT</span><span class="data-val">Iris</span></div>
+          <div class="data-row"><span class="data-key">HOBBIES</span><span class="data-val">Singing, painting, gardening</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ability-strip reveal-child">
+      <div class="ability-item">
+        <span class="ability-icon">♫</span>
+        <span class="ability-name">RESONANCE</span>
+        <span class="ability-desc">Can "hear" the Punishing Virus and Red Tide as music.</span>
+      </div>
+      <div class="ability-item">
+        <span class="ability-icon">⚡</span>
+        <span class="ability-name">SYMPHONIC COMBAT</span>
+        <span class="ability-desc">Plays five parts simultaneously via suppression device.</span>
+      </div>
+      <div class="ability-item">
+        <span class="ability-icon">❄</span>
+        <span class="ability-name">GLACIA ECHO</span>
+        <span class="ability-desc">Sound waves crystallize into frost on the battlefield.</span>
+      </div>
+      <div class="ability-item">
+        <span class="ability-icon">✧</span>
+        <span class="ability-name">IRIS VEIL</span>
+        <span class="ability-desc">Signature ability — a violet barrier of frozen sound.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ STORY ═══════════════ -->
+  <section id="story" class="section story-section reveal">
+    <div class="section-header">
+      <span class="section-index">02</span>
+      <h2 class="section-title glitch" data-text="STORY">STORY</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="story-layout">
+      <div class="story-timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-item reveal-child" data-year="BEFORE">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">THE RISING STAR</h3>
+            <p>Born in Babylonia and raised with aristocrat-style education, Selena became the most anticipated opera singer of the World Government Association of Art. Her voice and musical talent were unmatched — a beacon of culture in a crumbling world.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal-child" data-year="INCIDENT">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">THE SPACE STATION</h3>
+            <p>During a battle at a space station, Selena went missing. She was rescued by an "Ascendant" and her body was restructured by the Red Tide. The Hetero-core shard inside her nearly turned her into an abomination — but her mind held on.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal-child" data-year="TRANSFORM">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">VOICE OF THE VIRUS</h3>
+            <p>Selena gained the ability to "listen" to the Punishing Virus — to hear its "exotic song" of emotions. She became a Transcendant, wielding sound itself as a weapon. Her cello blade sings for everyone she encounters.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal-child" data-year="RETURN">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">PIANISSIMO</h3>
+            <p>With the Commandant, she chose the name "Pianissimo" — a reminder that the hall of art welcomes everyone. Her new frame was co-developed by the Science Council and WGAA. Though phantom pain remains, her pursuit of beauty is unshaken.</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal-child" data-year="NOW">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">THE IRIS THAT BLOOMS</h3>
+            <p>Now fighting alongside the Commandant and Gray Raven, Selena's melody weaves through every battle. Her voice is both shield and sword — a quiet defiance against the silence of extinction.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="story-quote reveal-child">
+        <div class="quote-mark">“</div>
+        <blockquote>
+          I made a wish to time itself: that one day, I'd see you again beyond that fence.
+        </blockquote>
+        <cite>— Selena, to the Commandant</cite>
+        <div class="quote-decoration"><span></span><span></span><span></span></div>
+        <button class="btn btn-ghost quote-btn" id="play-quote-sfx">
+          <span class="btn-icon">▶</span> PLAY QUOTE CHIME
+        </button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FRAMES ═══════════════ -->
+  <section id="frames" class="section frames-section reveal">
+    <div class="section-header">
+      <span class="section-index">03</span>
+      <h2 class="section-title glitch" data-text="FRAMES">FRAMES</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="frame-tabs" role="tablist">
+      <button class="frame-tab active" data-frame="pianissimo" role="tab">PIANISSIMO</button>
+      <button class="frame-tab" data-frame="capriccio" role="tab">CAPRICCIO</button>
+      <button class="frame-tab" data-frame="tempest" role="tab">TEMPEST</button>
+    </div>
+
+    <div class="frame-display">
+      <div class="frame-panel active" id="frame-pianissimo">
+        <div class="frame-panel-visual">
+          <!-- 🔁 REPLACE with: <img src="selena-pianissimo.jpg" alt="Pianissimo"> -->
+          <div class="frame-art-placeholder pianissimo-art">
+            <span class="art-glyph">♪</span>
+            <span class="art-name">PIANISSIMO</span>
+            <span class="ph-tag">// ART PLACEHOLDER</span>
+          </div>
+          <span class="frame-badge">S-RANK // LATEST</span>
+        </div>
+        <div class="frame-panel-info">
+          <h3 class="frame-name">SELENA: PIANISSIMO</h3>
+          <p class="frame-class">Attacker · Physical / Glacia</p>
+          <p class="frame-desc">A specialized frame co-developed by the Science Council and the World Government Association of Art. Its improved M.I.N.D. stability allows Selena to use a suppression device to perform multiple parts simultaneously. The frame's core enables her to play five parts even in the fiercest light, creating overwhelming sound waves that sweep across the battlefield.</p>
+          <div class="frame-stats">
+            <div class="stat"><span class="stat-label">ATK</span><span class="stat-bar" style="--fill:92%"></span><span class="stat-num">92</span></div>
+            <div class="stat"><span class="stat-label">SPD</span><span class="stat-bar" style="--fill:78%"></span><span class="stat-num">78</span></div>
+            <div class="stat"><span class="stat-label">CTRL</span><span class="stat-bar" style="--fill:85%"></span><span class="stat-num">85</span></div>
+            <div class="stat"><span class="stat-label">UTIL</span><span class="stat-bar" style="--fill:70%"></span><span class="stat-num">70</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="frame-panel" id="frame-capriccio">
+        <div class="frame-panel-visual">
+          <div class="frame-art-placeholder capriccio-art">
+            <span class="art-glyph">◆</span>
+            <span class="art-name">CAPRICCIO</span>
+            <span class="ph-tag">// ART PLACEHOLDER</span>
+          </div>
+          <span class="frame-badge">S-RANK // OMNIFRAME</span>
+        </div>
+        <div class="frame-panel-info">
+          <h3 class="frame-name">SELENA: CAPRICCIO</h3>
+          <p class="frame-class">Amplifier · Dark / Physical</p>
+          <p class="frame-desc">Selena's backup frame, made with the support of a WGAA artist. It is free-spirited and lively like its namesake, but the sentiments it embodies are earnest and solemn. More human-like in appearance than Tempest, the only mechanical element is the single mechanical left arm attached just above the elbow.</p>
+          <div class="frame-stats">
+            <div class="stat"><span class="stat-label">ATK</span><span class="stat-bar" style="--fill:80%"></span><span class="stat-num">80</span></div>
+            <div class="stat"><span class="stat-label">SPD</span><span class="stat-bar" style="--fill:88%"></span><span class="stat-num">88</span></div>
+            <div class="stat"><span class="stat-label">CTRL</span><span class="stat-bar" style="--fill:90%"></span><span class="stat-num">90</span></div>
+            <div class="stat"><span class="stat-label">UTIL</span><span class="stat-bar" style="--fill:82%"></span><span class="stat-num">82</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="frame-panel" id="frame-tempest">
+        <div class="frame-panel-visual">
+          <div class="frame-art-placeholder tempest-art">
+            <span class="art-glyph">⚡</span>
+            <span class="art-name">TEMPEST</span>
+            <span class="ph-tag">// ART PLACEHOLDER</span>
+          </div>
+          <span class="frame-badge">S-RANK // TRANSCENDANT</span>
+        </div>
+        <div class="frame-panel-info">
+          <h3 class="frame-name">SELENA: TEMPEST</h3>
+          <p class="frame-class">Vanguard · Lightning</p>
+          <p class="frame-desc">Selena's Transcendant frame, born from the Red Tide's restructuring and an Ascendant's rescue. Her body is not made by Babylonia; it is a joint effort between the Red Tide and an "Argent". Her M.I.N.D. was shut down for an extensive period, yet she was reborn with a body that fits her best.</p>
+          <div class="frame-stats">
+            <div class="stat"><span class="stat-label">ATK</span><span class="stat-bar" style="--fill:86%"></span><span class="stat-num">86</span></div>
+            <div class="stat"><span class="stat-label">SPD</span><span class="stat-bar" style="--fill:82%"></span><span class="stat-num">82</span></div>
+            <div class="stat"><span class="stat-label">CTRL</span><span class="stat-bar" style="--fill:75%"></span><span class="stat-num">75</span></div>
+            <div class="stat"><span class="stat-label">UTIL</span><span class="stat-bar" style="--fill:88%"></span><span class="stat-num">88</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ VOICELINES ═══════════════ -->
+  <section id="voicelines" class="section voicelines-section reveal">
+    <div class="section-header">
+      <span class="section-index">04</span>
+      <h2 class="section-title glitch" data-text="VOICELINES">VOICELINES</h2>
+      <span class="section-line"></span>
+    </div>
+    <p class="gallery-note">// CLICK A CARD TO PLAY ITS SYNTHESIZED CHIME + REVEAL THE LINE.</p>
+
+    <div class="voiceline-grid">
+      <button class="voiceline-card" data-freq="523.25" data-line="Every note has a soul. Even the ones the virus sings.">
+        <span class="vl-num">001</span>
+        <span class="vl-preview">"Every note has a soul..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+      <button class="voiceline-card" data-freq="587.33" data-line="The Commandant... thank you for listening, even when I could not sing.">
+        <span class="vl-num">002</span>
+        <span class="vl-preview">"The Commandant... thank you..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+      <button class="voiceline-card" data-freq="659.25" data-line="Do not mourn the silence. It is only the pause before the next verse.">
+        <span class="vl-num">003</span>
+        <span class="vl-preview">"Do not mourn the silence..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+      <button class="voiceline-card" data-freq="698.46" data-line="I will keep singing — for Babylonia, for the Gray Ravens, for every iris that blooms.">
+        <span class="vl-num">004</span>
+        <span class="vl-preview">"I will keep singing..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+      <button class="voiceline-card" data-freq="783.99" data-line="Pain is a chord. Beautiful, in its own way. Even dissonance becomes music eventually.">
+        <span class="vl-num">005</span>
+        <span class="vl-preview">"Pain is a chord..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+      <button class="voiceline-card" data-freq="880.00" data-line="Pianissimo. The softest voice. But do not mistake softness for surrender.">
+        <span class="vl-num">006</span>
+        <span class="vl-preview">"Pianissimo. The softest voice..."</span>
+        <span class="vl-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+      </button>
+    </div>
+
+    <div class="voiceline-display" id="voiceline-display">
+      <span class="vld-label">◈ CURRENT TRANSMISSION</span>
+      <p class="vld-text" id="vld-text">— select a card above —</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ RELATIONSHIPS ═══════════════ -->
+  <section id="relationships" class="section rel-section reveal">
+    <div class="section-header">
+      <span class="section-index">05</span>
+      <h2 class="section-title glitch" data-text="BONDS">BONDS</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="rel-grid">
+      <div class="rel-card reveal-child">
+        <div class="rel-icon">◇</div>
+        <h3 class="rel-name">THE COMMANDANT</h3>
+        <p class="rel-role">Anchor · Confidant</p>
+        <p class="rel-desc">The one who listened even when she could not sing. The Commandant is the reason Selena chose to return — a bond woven from silence, battle, and a promise beyond the fence.</p>
+      </div>
+      <div class="rel-card reveal-child">
+        <div class="rel-icon">◆</div>
+        <h3 class="rel-name">CHROME</h3>
+        <p class="rel-role">Childhood Friend · Guardian</p>
+        <p class="rel-desc">Once her protector during their time in the Archaeological Team. Chrome's steadfast loyalty echoes through the years, even when their paths diverged.</p>
+      </div>
+      <div class="rel-card reveal-child">
+        <div class="rel-icon">✦</div>
+        <h3 class="rel-name">THE ASCENDANT</h3>
+        <p class="rel-role">Rescuer · Enigma</p>
+        <p class="rel-desc">The one who pulled her from the space station. Their intentions remain wrapped in Red Tide — a haunting figure whose mercy she still cannot fully understand.</p>
+      </div>
+      <div class="rel-card reveal-child">
+        <div class="rel-icon">♫</div>
+        <h3 class="rel-name">GRAY RAVEN</h3>
+        <p class="rel-role">Allies · Family</p>
+        <p class="rel-desc">Lucia, Liv, Lee — comrades who accept her melody without question. In the Gray Ravens, Selena has found a new stage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ THEME ═══════════════ -->
+  <section id="theme" class="section theme-section reveal">
+    <div class="section-header">
+      <span class="section-index">06</span>
+      <h2 class="section-title glitch" data-text="THEME">THEME</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <div class="theme-panel">
+      <div class="theme-info">
+        <span class="theme-tag">SIGNATURE THEME // "IRISFALL"</span>
+        <h3 class="theme-title">The Melody of the Softest Voice</h3>
+        <p class="theme-desc">A slow, floating orchestral theme — piano over pads, a distant soprano voice, and strings that swell like waves. It is a lullaby for a broken world, and a promise that even silence can bloom.</p>
+        <div class="theme-meta">
+          <div><span class="meta-key">COMPOSER</span><span class="meta-val">Vanguard Sound</span></div>
+          <div><span class="meta-key">KEY</span><span class="meta-val">D minor → F major</span></div>
+          <div><span class="meta-key">TEMPO</span><span class="meta-val">60 BPM (Largo)</span></div>
+        </div>
+        <button class="btn btn-primary" id="theme-play">
+          <span class="btn-icon" id="theme-play-icon">▶</span> <span id="theme-play-label">PLAY THEME</span>
+        </button>
+      </div>
+      <div class="theme-visualizer" id="theme-visualizer">
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GALLERY ═══════════════ -->
+  <section id="gallery" class="section gallery-section reveal">
+    <div class="section-header">
+      <span class="section-index">07</span>
+      <h2 class="section-title glitch" data-text="GALLERY">GALLERY</h2>
+      <span class="section-line"></span>
+    </div>
+
+    <p class="gallery-note">// VISUAL ARCHIVE — Replace each placeholder with your favorite Selena art.</p>
+
+    <div class="gallery-filters">
+      <button class="gf-btn active" data-filter="all">ALL</button>
+      <button class="gf-btn" data-filter="pianissimo">PIANISSIMO</button>
+      <button class="gf-btn" data-filter="capriccio">CAPRICCIO</button>
+      <button class="gf-btn" data-filter="tempest">TEMPEST</button>
+      <button class="gf-btn" data-filter="story">STORY</button>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-item" data-cat="pianissimo" data-caption="Selena — Pianissimo Portrait">
+        <div class="gallery-placeholder gp-1"><span class="gp-num">01</span><span class="gp-label">PIANISSIMO</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="capriccio" data-caption="Selena — Capriccio">
+        <div class="gallery-placeholder gp-2"><span class="gp-num">02</span><span class="gp-label">CAPRICCIO</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="tempest" data-caption="Selena — Tempest">
+        <div class="gallery-placeholder gp-3"><span class="gp-num">03</span><span class="gp-label">TEMPEST</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="pianissimo" data-caption="Selena — Shimmering Tide">
+        <div class="gallery-placeholder gp-4"><span class="gp-num">04</span><span class="gp-label">SHIMMERING TIDE</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="story" data-caption="Selena — Threads of Destiny">
+        <div class="gallery-placeholder gp-5"><span class="gp-num">05</span><span class="gp-label">THREADS OF DESTINY</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="pianissimo" data-caption="Selena — Irisfall Ballad">
+        <div class="gallery-placeholder gp-6"><span class="gp-num">06</span><span class="gp-label">IRISFALL BALLAD</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="story" data-caption="Selena — Among Flowers">
+        <div class="gallery-placeholder gp-7"><span class="gp-num">07</span><span class="gp-label">AMONG FLOWERS</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="capriccio" data-caption="Selena — Recitativo di Fantasia">
+        <div class="gallery-placeholder gp-8"><span class="gp-num">08</span><span class="gp-label">RECITATIVO</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="tempest" data-caption="Selena — Ascendant's Mercy">
+        <div class="gallery-placeholder gp-9"><span class="gp-num">09</span><span class="gp-label">ASCENDANT'S MERCY</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="pianissimo" data-caption="Selena — Solo No. 5">
+        <div class="gallery-placeholder gp-10"><span class="gp-num">10</span><span class="gp-label">SOLO NO. 5</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="story" data-caption="Selena — Beyond the Fence">
+        <div class="gallery-placeholder gp-11"><span class="gp-num">11</span><span class="gp-label">BEYOND THE FENCE</span><span class="ph-tag">// IMG</span></div>
+      </div>
+      <div class="gallery-item" data-cat="tempest" data-caption="Selena — Storm Song">
+        <div class="gallery-placeholder gp-12"><span class="gp-num">12</span><span class="gp-label">STORM SONG</span><span class="ph-tag">// IMG</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ LIGHTBOX ░░░ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">✕</button>
+    <button class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous">‹</button>
+    <button class="lightbox-nav next" id="lightbox-next" aria-label="Next">›</button>
+    <div class="lightbox-content">
+      <div class="lightbox-media" id="lightbox-media"></div>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- ░░░ TERMINAL MODAL (EASTER EGG) ░░░ -->
+  <div class="terminal-modal" id="terminal-modal" aria-hidden="true">
+    <div class="terminal-panel">
+      <div class="terminal-header">
+        <span>ARCHIVE_TERMINAL_v1.0</span>
+        <button class="terminal-close" id="terminal-close">✕</button>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <p class="term-line">> Welcome to the Selena Archive Terminal.</p>
+        <p class="term-line">> Type <span class="term-hi">help</span> for commands.</p>
+      </div>
+      <div class="terminal-input">
+        <span class="term-prompt">SELENA@ARCHIVE:~$</span>
+        <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░░ TOAST ░░░ -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">◈ PGR<em>//</em>ARCHIVE</span>
+        <p>Unofficial fan project. Selena, Punishing: Gray Raven, and all related assets are property of Kuro Games.</p>
+      </div>
+      <div class="footer-links">
+        <span class="footer-label">NAVIGATE</span>
+        <a href="#hero">Home</a><a href="#biodata">Biodata</a><a href="#story">Story</a>
+        <a href="#frames">Frames</a><a href="#voicelines">Voice</a><a href="#gallery">Gallery</a>
+      </div>
+      <div class="footer-status">
+        <span class="footer-label">SYSTEM</span>
+        <span class="footer-stat">VERSION 2.0.0</span>
+        <span class="footer-stat">STATUS: ONLINE</span>
+        <span class="footer-stat">AUDIO: SYNTH</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 FAN ARCHIVE — NOT AFFILIATED WITH KURO GAMES</span>
+      <span class="footer-code">// SELENA_FAN_PAGE_v2</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
